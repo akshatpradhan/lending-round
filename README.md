@@ -14,11 +14,11 @@ Copyright 2013 Spoutlets, Inc.
 
 
 
-h1. Lending Round
+# Lending Round
 
 This application was generated with the "rails_apps_composer":https://github.com/RailsApps/rails_apps_composer gem provided by the "RailsApps Project":http://railsapps.github.io/.
 
-h2. Diagnostics
+## Diagnostics
 
 This application was built with recipes that are known to work together.
 
@@ -34,7 +34,7 @@ Recipes:
 Preferences:
 {:git=>true, :railsapps=>"none", :dev_webserver=>"thin", :prod_webserver=>"thin", :database=>"mongodb", :orm=>"mongoid", :templates=>"erb", :unit_test=>"rspec", :integration=>"rspec-capybara", :continuous_testing=>"guard", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"less", :email=>"mandrill", :authentication=>"omniauth", :omniauth_provider=>"twitter", :authorization=>"cancan", :form_builder=>"simple_form", :starter_app=>"admin_app", :rvmrc=>false, :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :ban_spiders=>true, :github=>true}
 
-h2. Ruby on Rails
+## Ruby on Rails
 
 This application requires:
 
@@ -43,11 +43,11 @@ This application requires:
 
 Learn more about "Installing Rails":http://railsapps.github.io/installing-rails.html.
 
-h2. Database
+## Database
 
 This application uses MongoDB with the Mongoid ORM.
 
-h2. Development
+## Development
 
 * Template Engine: ERB
 * Testing Framework: RSpec and Factory Girl
@@ -56,27 +56,27 @@ h2. Development
 * Authentication: OmniAuth
 * Authorization: CanCan
 
-h2. Email
+## Email
 
 The application is configured to send email using a Mandrill account.
 
-h2. Getting Started
+## Getting Started
 
 See Wiki
 
-h2. Documentation and Support
+## Documentation and Support
 
 See wiki
 
-h4. Issues
+#### Issues
 
 See Github Issues
 
-h2. Similar Projects
+## Similar Projects
 
 http://www.nationalfamilymortgage.com, http://www.lendingclub.com
 
-h2. Contributing
+## Contributing
 
 If you make improvements to this application, please share with others.
 
@@ -87,10 +87,10 @@ If you make improvements to this application, please share with others.
 
 If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
 
-h2. Credits
+## Credits
 
 http://linkedin.com/in/akshatpradhan
 
-h2. License
+## License
 
 MIT Liencesd
