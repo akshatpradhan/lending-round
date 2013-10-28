@@ -1,4 +1,10 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<div class="row">
+  <div class="span11 offset1">
+    <h3>
+      A simple way to manage personal loans to your friend's startup
+    </h3>
+    <% @users.each do |user| %>
+      <p>User: <%=link_to user.name, user %></p>
+    <% end %>
+  </div>
+</div>
