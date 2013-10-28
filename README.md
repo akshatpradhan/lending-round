@@ -1,3 +1,19 @@
+### Spoutlets ###
+
+[Create a loan](http://www.LendingRound.com) | [suggest a new idea](https://github.com/akshatpradhan/lending_round/issues) |
+[get running locally](https://github.com/akshatpradhan/lending_round/wiki)
+
+A simple way to manage personal loans to your friend's startup
+
+
+![Screenshot](https://raw.github.com/akshatpradhan/lending_round/master/LendingRound.png)
+
+
+Copyright 2013 Spoutlets, Inc.
+
+
+
+
 h1. Lending Round
 
 This application was generated with the "rails_apps_composer":https://github.com/RailsApps/rails_apps_composer gem provided by the "RailsApps Project":http://railsapps.github.io/.
@@ -46,19 +62,19 @@ The application is configured to send email using a Mandrill account.
 
 h2. Getting Started
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+See Wiki
 
 h2. Documentation and Support
 
-This is the only documentation.
+See wiki
 
 h4. Issues
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+See Github Issues
 
 h2. Similar Projects
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+http://www.nationalfamilymortgage.com, http://www.lendingclub.com
 
 h2. Contributing
 
@@ -73,8 +89,8 @@ If you add functionality to this application, create an alternative implementati
 
 h2. Credits
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+http://linkedin.com/in/akshatpradhan
 
 h2. License
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+MIT Liencesd
