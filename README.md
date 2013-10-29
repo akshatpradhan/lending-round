@@ -1,4 +1,4 @@
-### Spoutlets ###
+### LendingRound ###
 
 [Create a loan](http://www.LendingRound.com) | [suggest a new idea](https://github.com/akshatpradhan/lending_round/issues) |
 [get running locally](https://github.com/akshatpradhan/lending_round/wiki)
@@ -9,7 +9,7 @@ A simple way to manage personal loans to your friend's startup
 ![Screenshot](https://raw.github.com/akshatpradhan/lending_round/master/LendingRound.png)
 
 
-Copyright 2013 Spoutlets, Inc.
+Copyright 2013 LendingRound, Inc.
 
 
 
