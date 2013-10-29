@@ -4,10 +4,12 @@ feature "User authenticates with dwolla" do
 
   given!(:user) {create(:user)}
 
-  describe "for registered users" do
+  background do
+    OmniAuth.config.test_mode = true
+  end
 
+  describe "for registered users" do
     background do
-      OmniAuth.config.test_mode = true
       OmniAuth.config.add_mock :dwolla, {
         uid: user.uid,
         provider: user.provider,
