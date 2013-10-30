@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, notice: "Signed in!"
+      redirect_to root_url, notice: "Signed in!"
     else
       render :edit
     end
