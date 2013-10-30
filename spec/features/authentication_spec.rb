@@ -22,9 +22,9 @@ feature "User authenticates with dwolla" do
 
     scenario "registered user can sign in with dwolla" do
       visit signin_path
-      print User.first.inspect
       page.should_not have_content "Please enter your email address"
       page.should have_content "Signed in!"
+      page.current_path.should == root_path
     end
   end
 
@@ -34,5 +34,6 @@ feature "User authenticates with dwolla" do
     fill_in "Email", with: "test@test.com"
     click_button "Sign in"
     page.should have_content "Signed in!"
+    page.current_path.should == root_path
   end
 end
