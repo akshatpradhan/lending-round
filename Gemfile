@@ -11,7 +11,7 @@ gem 'cancan'
 gem 'figaro'
 gem 'mongoid'
 gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'omniauth-dwolla'
 gem 'rolify'
 gem 'simple_form'
 gem 'thin'
@@ -23,6 +23,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem "guard", "~> 2.1.0"
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
