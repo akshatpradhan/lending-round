@@ -1,10 +1,19 @@
 <%= simple_form_for(@note) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-  </div>
+  <%= f.input :amount %>
+  <%= f.input :rate %>
+  <%= f.input :term %>
+  <%= f.input :start_date %>
+  <% %w(lender borrower).each do |lender_or_borrower| %>
+    <%= f.simple_fields_for :"#{lender_or_borrower}" do |lb| %>
+      <%= lb.input :name %>
+      <%= lb.input :email %>
+      <%= lb.input :address %>
+    <% end %>
+  <% end %>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Checkout with Dwolla!" %>
   </div>
 <% end %>

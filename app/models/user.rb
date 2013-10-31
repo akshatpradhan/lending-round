@@ -4,12 +4,16 @@ class User
   field :provider, type: String
   field :uid, type: String
   field :name, type: String
+  field :address
   field :email, type: String
   attr_accessible :role_ids, :as => :admin
-  attr_accessible :provider, :uid, :name, :email
+  attr_accessible :provider, :uid, :name, :address, :email
   validates_presence_of :name
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
+
+  belongs_to :note, inverse_of: :lender
+  belongs_to :note, inverse_of: :borrower
 
   def self.create_with_omniauth(auth)
     create! do |user|

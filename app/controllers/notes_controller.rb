@@ -25,6 +25,8 @@ class NotesController < ApplicationController
   # GET /notes/new.json
   def new
     @note = Note.new
+    @note.build_lender
+    @note.build_borrower
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,8 @@ class NotesController < ApplicationController
   # GET /notes/1/edit
   def edit
     @note = Note.find(params[:id])
+    @note.build_lender
+    @note.build_borrower
   end
 
   # POST /notes
