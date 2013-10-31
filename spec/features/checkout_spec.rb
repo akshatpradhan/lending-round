@@ -51,5 +51,9 @@ feature "User wanting to lend money" do
     click_button "Checkout with Dwolla!"
     page.current_path.should match /\/notes\//
     page.should have_content /review promissory note/i
+    page.should have_content "The loan amount is for $6000"
+    page.should have_content "The Interest Rate is for 11.0%"
+    page.should have_content "It lasts for 36 months"
+    page.should have_content "First Payment Date is October 27, 2013"
   end
 end
