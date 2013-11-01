@@ -42,11 +42,9 @@
   <div class="row">
   <% %w(lender borrower).each do |lender_or_borrower| %>
     <div class="span6">
-      <%= f.simple_fields_for :"#{lender_or_borrower}" do |lb| %>
-        <%= lb.input :name %>
-        <%= lb.input :email %>
-        <%= lb.input :address %>
-      <% end %>
+      <%= f.input :"#{lender_or_borrower}_name", label: "Name" %>
+      <%= f.input :"#{lender_or_borrower}_email", label: "Email"%>
+      <%= f.input :"#{lender_or_borrower}_address", label: "Address" %>
     </div>
   <% end %>
   </div>
