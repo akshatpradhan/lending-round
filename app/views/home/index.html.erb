@@ -1,10 +1,111 @@
 <div class="row">
-  <div class="span11 offset1">
-    <h3>
-      A simple way to manage personal loans to your friend's startup
-    </h3>
-    <% @users.each do |user| %>
-      <p>User: <%=link_to user.name, user %></p>
-    <% end %>
+  <div class="span5 offset1">
+    <h1>
+      LendingRound
+      <br>
+      <small>A simple way to manage personal loans to your friend's small business.</small>
+    </h1>
+  </div>
+  <div class="span6">
+    <img src="http://placehold.it/500x250" class="img-polaroid">
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="span8 offset2">
+    <p class="lead">Start by calculating the amount of the loan and for how long. Then click Create a Loan. No extra steps necessary.</p>
+    <hr>
+  </div>
+</div>
+
+<%= simple_form_for :new_note, method: :get, html: {class: "form-horizontal"} do |f| %>
+  <div class="row">
+    <div class="span3 offset2">
+      <%= f.input :amount, label: "Loan Amount", input_html: {class: "input-small"}  %>
+        <%= f.input :rate, label: "Interest Rate", input_html: {class: "input-small"} %>
+        <%= f.input :term, label: "Term (months)", input_html: {class: "input-small"} %>
+        <%= f.input :start_date, label: "First Payment Date", input_html: {class: "input-small"} %>
+    </div>
+    <div class="span1">
+      <br>
+      <br>
+      <br>
+      <span style="font-size: 60px; font-weight: bold;">&rarr;</span>
+    </div>
+    <div class="span4">
+      <table class="table table-bordered loan-summary">
+        <thead>
+          <tr>
+            <th colspan="2">Loan Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>$196.43</strong><br>
+              Monthly payment
+            </td>
+            <td>
+              <strong>$7,071.56</strong><br>
+              Over 36 Payments
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>$1,071.56</strong><br>
+              Total Interest
+            </td>
+            <td>
+              <strong>Sep. 2016</strong><br>
+              Pay-off date
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!- .row !>
+  <div class="row">
+    <div class="span6 offset3">
+      <%= f.button :submit,"Create a loan!", class: "btn-primary btn-block" %>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+
+<div class="row">
+  <div class="span4">
+    <h2>what makes our app stand out</h2>
+  </div>
+  <div class="span8">
+    <div class="media">
+      <div class="pull-left">
+        <img src="http://placehold.it/128x128", class: "img-polaroid">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Personal loans</h4>
+        Create and sign a personal loan online (0-13% interest rates). Legal documents are already prepared for you. No dealing with a lawyer or trying to draft your own legal documents.
+      </div>
+    </div>
+    <div class="media">
+      <div class="pull-left">
+        <img src="http://placehold.it/128x128", class: "img-polaroid">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Repayments</h4>
+        Money is automatically transferred to bank accounts. Complete automation of repayments and withdrawals to/from bank accounts. No need to think about if you paid or not.
+      </div>
+    </div>
+    <div class="media">
+      <div class="pull-left">
+        <img src="http://placehold.it/128x128", class: "img-polaroid">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Reporting & Protection</h4>
+        We want to protect friendships. Insufficient funds? We'll cc both parties to get some dialog going. Receive monthly statements, tax forms, and light reporting.
+      </div>
+    </div>
   </div>
 </div>
