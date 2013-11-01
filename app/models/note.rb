@@ -6,11 +6,12 @@ class Note
   field :r, as: :rate, type: BigDecimal
   field :t, as: :term, type: Integer
   field :sd, as: :start_date, type: Date
+  field :ln, as: :lender_name
+  field :ln, as: :lender_email
+  field :la, as: :lender_address
+  field :bn, as: :borrower_name
+  field :ln, as: :borrower_email
+  field :ba, as: :borrower_address
 
-  has_one :lender
-  has_one :borrower
-
-  %w(lender borrower).each do |lender_or_borrower|
-    accepts_nested_attributes_for :"#{lender_or_borrower}", reject_if: proc { |obj| obj.blank? }
-  end
+  attr_accessible :amount, :rate, :term, :start_date, :lender_name, :lender_email, :lender_address, :borrower_name, :borrower_email, :borrower_address
 end
