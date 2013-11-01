@@ -43,9 +43,9 @@ feature "User wanting to lend money" do
       last = lender_or_borrower[:last]
       email = lender_or_borrower[:email]
       address = lender_or_borrower[:address]
-      fill_in "note_#{type}_attributes_name",       with: [last, first].join(" ")
-      fill_in "note_#{type}_attributes_email",      with: email
-      fill_in "note_#{type}_attributes_address",    with: address
+      fill_in "note_#{type}_name",       with: [last, first].join(" ")
+      fill_in "note_#{type}_email",      with: email
+      fill_in "note_#{type}_address",    with: address
     end
 
     click_button "Checkout with Dwolla!"
