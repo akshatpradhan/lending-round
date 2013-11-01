@@ -31,7 +31,7 @@
           <%= label_tag borrower_or_lender, "Signature", class: "control-label" %>
           <div class="controls">
             <%= text_field_tag borrower_or_lender, "",
-              placeholder: @note.send(borrower_or_lender).name %>
+              placeholder: @note.send("#{borrower_or_lender}_name") %>
           </div>
         </div>
         <div class="row">
