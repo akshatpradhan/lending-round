@@ -12,6 +12,29 @@
  *= require_tree .
 */
 
+.loan-summary.table-bordered {
+  th {
+      background-color: #f7f7f7;
+      border-top: none;
+  }
+  td {
+    border: none;
+  }
+  tr:first-child td {
+    border-top: 1px solid #dddddd;
+  }
+
+  td:first-child {
+    border-left: 1px solid #dddddd;
+  }
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
 .content {
   background-color: #eee;
   padding: 20px;
