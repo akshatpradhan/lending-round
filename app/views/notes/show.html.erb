@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="span11 offset1"><h1>Review promissory note</h1></div>
+</div>
+
+<div class="row">
+  <div class="span4 offset3">
+    <div class="well well-large">
+      <p>The loan amount is for <strong>$<%= @note.amount %></strong></p>
+      <p>The Interest Rate is for <strong><%= @note.rate %>%</strong></p>
+      <p>It lasts for <strong><%= @note.term %> months</strong></p>
+      <p>First Payment Date is <strong><%= l @note.start_date, format: :long %> </strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% %w(borrower lender).each do |borrower_or_lender| %>
+    <div class="span5 offset1">
+      <h3><%= borrower_or_lender.titleize %></h3>
+    </div>
+  <% end -%>
+</div>
+
+<div class="row">
+  <% %w(borrower lender).each do |borrower_or_lender| %>
+    <div class="span6">
+      <%= form_tag borrower_or_lender, class: "form-horizontal " do %>
+        <div class="control-group">
+          <%= label_tag borrower_or_lender, "Signature", class: "control-label" %>
+          <div class="controls">
+            <%= text_field_tag borrower_or_lender, "",
+              placeholder: @note.send("#{borrower_or_lender}_name") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span4 offset1">
+          <%= submit_tag "Sign & Accept terms", class: "btn btn-primary btn-block"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end -%>
+</div>

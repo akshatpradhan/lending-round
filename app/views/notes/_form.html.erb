@@ -1,0 +1,57 @@
+<%= simple_form_for(@note, html: {class: "form-horizontal"}) do |f| %>
+  <div class="row">
+    <div class="span11 offset1"><%= f.error_notification %></div>
+  </div>
+
+  <div class="row">
+    <div class="span5 offset1">
+      <h3>What you need</h3>
+    </div>
+    <div class="span6">
+      <h3>Enter loan details</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4 offset1">
+      <ol>
+        <li>loan details.<br/>loan amount, interest rate, payment term, payment date
+        </li>
+        <li>lender and borrower contact information.<br/>name, email and address
+        </li>
+        <li>and a dwolla account.<br/>greate payment network to enhance your security!
+        </li>
+      </ol>
+    </div>
+
+    <div class="span7">
+      <%= f.input :amount, data: {placeholder: "6000"} %>
+      <%= f.input :rate, data: {placeholder: "11.0"} %>
+      <%= f.input :term, data: {placeholder: "36"} %>
+      <%= f.input :start_date, data: {placeholder: "Oct 27, 2013"} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span5 offset1">
+      <h3>Lender</h3>
+    </div>
+    <div class="span5 offset1">
+      <h3>Borrower</h3>
+    </div>
+  </div>
+  <div class="row">
+  <% %w(lender borrower).each do |lender_or_borrower| %>
+    <div class="span6">
+      <%= f.input :"#{lender_or_borrower}_name", label: "Name" %>
+      <%= f.input :"#{lender_or_borrower}_email", label: "Email"%>
+      <%= f.input :"#{lender_or_borrower}_address", label: "Address" %>
+    </div>
+  <% end %>
+  </div>
+
+  <p class="text-center">
+    * We suggest the borrower pay the fee or buy the lender an amazing dinner!
+    <br>
+    <%= f.button :submit, "Checkout with Dwolla!", class: "btn btn-primary" %>
+  </p>
+<% end %>

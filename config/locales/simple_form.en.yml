@@ -10,6 +10,12 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      note:
+        amount: Loan Amount
+        rate: Interest Rate (%)
+        term: Term (months)
+        start_date: First Payment Date
     # Labels and hints examples
     # labels:
     #   defaults:
