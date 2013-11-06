@@ -3,7 +3,7 @@
 [Create a loan](http://www.LendingRound.com) | [suggest a new idea](https://github.com/akshatpradhan/lending_round/issues) |
 [get running locally](https://github.com/akshatpradhan/lending_round/wiki)
 
-A simple way to manage personal loans to your friend's startup
+A simple way to manage a personal loan to your friend.
 
 
 ![Screenshot](https://raw.github.com/akshatpradhan/lending_round/master/LendingRound.png)
