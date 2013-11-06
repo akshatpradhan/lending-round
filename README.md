@@ -1,15 +1,15 @@
-### LendingRound ###
+### Lending round ###
 
-[Create a loan](http://www.LendingRound.com) | [suggest a new idea](https://github.com/akshatpradhan/lending_round/issues) |
-[get running locally](https://github.com/akshatpradhan/lending_round/wiki)
+[Create a loan](http://www.LendingRound.com) | [suggest a new idea](https://github.com/akshatpradhan/lending-round/issues) |
+[get running locally](https://github.com/akshatpradhan/lending-round/wiki)
 
 A simple way to manage a personal loan to your friend.
 
 
-![Screenshot](https://raw.github.com/akshatpradhan/lending_round/master/LendingRound.png)
+![Screenshot](https://raw.github.com/akshatpradhan/lending-round/master/LendingRound.png)
 
 
-Copyright 2013 LendingRound, Inc.
+Copyright 2013 Lending round
 
 
 
@@ -93,4 +93,4 @@ http://linkedin.com/in/akshatpradhan
 
 ## License
 
-MIT Liencesd
+MIT licensed! See License.TXT
