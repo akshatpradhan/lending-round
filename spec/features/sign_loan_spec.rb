@@ -52,5 +52,10 @@ feature "User wanting to sign a loan" do
     fill_in "note_signed_by_lender", with: user.name
     click_button "lender_sign"
     page.should have_content "#{user.name} has signed the promissory note"
+    page.should_not have_button "lender_sign"
+    fill_in "note_signed_by_borrower", with: "Terry Nichols"
+    click_button "borrower_sign"
+    page.should have_content "Terry Nichols has signed the promissory note"
+    page.should_not have_button "borrower_sign"
   end
 end
