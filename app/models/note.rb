@@ -12,6 +12,8 @@ class Note
   field :bn, as: :borrower_name
   field :ln, as: :borrower_email
   field :ba, as: :borrower_address
+  field :sbb, as: :signed_by_borrower
+  field :sbl, as: :signed_by_lender
 
-  attr_accessible :amount, :rate, :term, :start_date, :lender_name, :lender_email, :lender_address, :borrower_name, :borrower_email, :borrower_address
+  attr_accessible :amount, :rate, :term, :start_date, :lender_name, :lender_email, :lender_address, :borrower_name, :borrower_email, :borrower_address, :signed_by_lender, :signed_by_borrower
 end
