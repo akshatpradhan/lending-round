@@ -21,15 +21,8 @@ class NotesController < ApplicationController
     end
   end
 
-  # GET /notes/new
-  # GET /notes/new.json
   def new
     @note = Note.new(user_id: current_user.id)
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @note }
-    end
   end
 
   # GET /notes/1/edit
@@ -37,19 +30,14 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
-  # POST /notes
-  # POST /notes.json
   def create
     @note = Note.new(params[:note])
 
-    respond_to do |format|
-      if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
-        format.json { render json: @note, status: :created, location: @note }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-      end
+    if @note.save
+      UserMailer.loan_invite(@note).deliver
+      redirect_to @note, notice: 'Note was successfully created.'
+    else
+      render action: "new"
     end
   end
 
