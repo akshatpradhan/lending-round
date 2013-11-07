@@ -24,7 +24,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    @note = Note.new
+    @note = Note.new(user_id: current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb
