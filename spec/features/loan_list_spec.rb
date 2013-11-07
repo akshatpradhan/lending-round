@@ -29,7 +29,7 @@ feature "Registered user with loans" do
   scenario "can see his loans on his profile page" do
     visit note_path(note)
     click_on "Go to My Profile"
-    page.current_path.should == profile_path
+    page.current_path.should == user_path(user)
     click_on "Loan #{note.id}"
     page.current_path.should == note_path(note)
   end
