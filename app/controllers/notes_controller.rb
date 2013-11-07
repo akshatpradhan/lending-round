@@ -41,7 +41,7 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
 
     if @note.save
-      UserMailer.loan_invite(@note).deliver
+      User.invite!({email: @note.borrower_email, name: @note.borrower_name}, current_user)
       redirect_to @note, notice: 'Note was successfully created.'
     else
       render action: "new"
