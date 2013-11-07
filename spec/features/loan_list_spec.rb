@@ -9,9 +9,9 @@ feature "Registered user with loans" do
   #Given I'm on users/:id
   #When I click a Loan
   #Then I should be redirected to notes/:id
-  #
+
   given!(:user) {create(:user)}
-  given!(:note) {create(:note)}
+  given!(:note) {create(:note, user_id: user.id)}
 
   background do
     OmniAuth.config.test_mode = true
@@ -30,7 +30,7 @@ feature "Registered user with loans" do
     visit note_path(note)
     click_on "Go to My Profile"
     page.current_path.should == user_path(user)
-    click_on "Loan #{note.id}"
+    click_on "Loan ##{note.id}"
     page.current_path.should == note_path(note)
   end
 end
