@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="span11 offset1"><h1>Review promissory note</h1></div>
 </div>
@@ -26,19 +24,17 @@
 <div class="row">
   <% %w(borrower lender).each do |borrower_or_lender| %>
     <div class="span6">
-      <%= form_tag borrower_or_lender, class: "form-horizontal " do %>
-        <div class="control-group">
-          <%= label_tag borrower_or_lender, "Signature", class: "control-label" %>
-          <div class="controls">
-            <%= text_field_tag borrower_or_lender, "",
-              placeholder: @note.send("#{borrower_or_lender}_name") %>
+      <% if @note.send(:"signed_by_#{borrower_or_lender}").present? %>
+        <p><%= @note.send(:"signed_by_#{borrower_or_lender}")%> has signed the promissory note.</p>
+      <% else %>
+        <%= simple_form_for @note, html: {class: "form-horizontal"} do |f| %>
+          <%= f.input :"signed_by_#{borrower_or_lender}", label: "Signature", placeholder: @note.send("#{borrower_or_lender}_name") %>
+          <div class="row">
+            <div class="span4 offset1">
+              <%= submit_tag "Sign & Accept terms", class: "btn btn-primary btn-block", id: "#{borrower_or_lender}_sign"%>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="span4 offset1">
-          <%= submit_tag "Sign & Accept terms", class: "btn btn-primary btn-block"%>
-          </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   <% end -%>
