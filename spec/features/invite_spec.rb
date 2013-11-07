@@ -16,7 +16,7 @@ feature "Lender creates a loan" do
   #Then I should be redirected to notes/:id
 
   given!(:user) {create(:user)}
-  given!(:note) {create(:note)}
+  given!(:borrower_email) {"terrynichols@gmail.com"}
 
   background do
     OmniAuth.config.test_mode = true
@@ -28,27 +28,43 @@ feature "Lender creates a loan" do
         email: user.email
       }
     }
-    visit signin_path
-  end
-
-  scenario "invites the borrower through an automatic email" do
+    visit user_omniauth_authorize_path(:dwolla)
     visit new_note_path
     fill_in "note_amount",     with: 6000
     fill_in "note_rate",       with: 11.0
     fill_in "note_term",       with: 36
     fill_in "note_start_date", with: "2013/10/27"
 
-    borrower_email = "terrynichols@gmail.com"
     fill_in "note_lender_email",   with: user.email
     fill_in "note_borrower_email", with: borrower_email
     click_button "Checkout with Dwolla!"
+    visit signout_path
+  end
+
+  scenario "borrower receives an invitation email" do
+    borrower = User.where(email: borrower_email).first
     mail = ActionMailer::Base.deliveries.last
-    mail.to.should include borrower_email
-    mail.body.encoded.should match(/#{note_path(Note.last)}/)
+    mail.to.should include borrower.email
   end
 
-  scenario "borrower accepts invitation to see the loan" do
-    pending
+  describe "bla" do
+    background do
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.add_mock :dwolla, {
+        uid: "100004721472442",
+        provider: "dwolla",
+        info: {
+          name: "Don borrower",
+          email: borrower_email
+        }
+      }
+    end
+    scenario "borrower accepts invitation to see the loan" do
+      borrower = User.where(email: borrower_email).first
+      visit accept_user_invitation_path(invitation_token: borrower.invitation_token)
+      print borrower.inspect
+      page.should have_content /Successfully authenticated from Dwolla account/i
+      page.should have_content(/Loans you have been invited to sign/i)
+    end
   end
-
 end
