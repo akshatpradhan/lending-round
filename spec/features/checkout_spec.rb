@@ -27,7 +27,7 @@ feature "User wanting to lend money" do
 
   scenario "creates a promissory note on lending round" do
     visit signin_path
-    click_link "Create a loan"
+    click_on "Create a loan!"
     page.current_path.should == new_note_path
     fill_in "note_amount",     with: 6000
     fill_in "note_rate",       with: 11.0
@@ -50,6 +50,7 @@ feature "User wanting to lend money" do
 
     click_button "Checkout with Dwolla!"
     page.current_path.should match /\/notes\//
+    user.notes.count.should == 1
     page.should have_content /review promissory note/i
     page.should have_content "The loan amount is for $6000"
     page.should have_content "The Interest Rate is for 11.0%"
