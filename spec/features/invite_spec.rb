@@ -28,7 +28,8 @@ feature "Lender creates a loan" do
         email: user.email
       }
     }
-    visit user_omniauth_authorize_path(:dwolla)
+    visit root_path
+    click_on "Login"
     visit new_note_path
     fill_in "note_amount",     with: 6000
     fill_in "note_rate",       with: 11.0
