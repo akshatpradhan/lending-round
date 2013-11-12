@@ -15,6 +15,8 @@ gem 'omniauth-dwolla'
 gem 'rolify'
 gem 'simple_form'
 gem 'thin'
+gem 'devise', '>= 2.0.0'
+gem 'devise_invitable', '~> 1.1.0'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby

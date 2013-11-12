@@ -1,11 +1,15 @@
 LendingRound::Application.routes.draw do
-  resources :notes
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    invitations: "users/invitations"}
 
+  devise_scope :user do
+    get 'signin', to: 'devise/sessions#new', as: :signin
+    get 'signout', to:  'devise/sessions#destroy', as: :signout
+  end
+
+  resources :notes
+  resources :users, :only => [:index, :show, :edit, :update ]
 
   root :to => "home#index"
-  resources :users, :only => [:index, :show, :edit, :update ]
-  match '/auth/:provider/callback' => 'sessions#create'
-  match '/signin' => 'sessions#new', :as => :signin
-  match '/signout' => 'sessions#destroy', :as => :signout
-  match '/auth/failure' => 'sessions#failure'
 end

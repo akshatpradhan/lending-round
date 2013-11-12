@@ -46,6 +46,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
+        User.invite!({email: @note.borrower_email, name: @note.borrower_name}, current_user)
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else

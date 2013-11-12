@@ -9,7 +9,7 @@
     </li>
   <% else %>
     <li>
-    <%= link_to 'Login', signin_path %>
+    <%= link_to 'Login', user_omniauth_authorize_path(:dwolla) %>
     </li>
   <% end %>
   <% if user_signed_in? %>
