@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "User wanting to sign a loan" do
 
-#Given I'm on notes/new, 
+#Given I'm on notes/new,
 #when I create a loan
 #then I'm redirected to notes/:id
 
@@ -48,7 +48,7 @@ feature "User wanting to sign a loan" do
       fill_in "note_#{type}_email",      with: email
       fill_in "note_#{type}_address",    with: address
     end
-    click_button "Checkout with Dwolla!"
+    click_button "Create the Promissory Note!"
     fill_in "note_signed_by_lender", with: user.name
     click_button "lender_sign"
     page.should have_content "#{user.name} has signed the promissory note"
