@@ -21,6 +21,8 @@ class NotesController < ApplicationController
     end
   end
 
+  # GET /notes/new
+  # GET /notes/new.json
   def new
     params[:note] ||= {}
     params[:note][:user_id] = current_user.id
@@ -37,14 +39,20 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
+  # POST /notes
+  # POST /notes.json
   def create
     @note = Note.new(params[:note])
 
-    if @note.save
-      User.invite!({email: @note.borrower_email, name: @note.borrower_name}, current_user)
-      redirect_to @note, notice: 'Note was successfully created.'
-    else
-      render action: "new"
+    respond_to do |format|
+      if @note.save
+        User.invite!({email: @note.borrower_email, name: @note.borrower_name}, current_user)
+        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        format.json { render json: @note, status: :created, location: @note }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
     end
   end
 
