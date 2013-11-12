@@ -7,10 +7,10 @@ class Note
   field :t, as: :term, type: Integer
   field :sd, as: :start_date, type: Date
   field :ln, as: :lender_name
-  field :ln, as: :lender_email
+  field :le, as: :lender_email
   field :la, as: :lender_address
   field :bn, as: :borrower_name
-  field :ln, as: :borrower_email
+  field :be, as: :borrower_email
   field :ba, as: :borrower_address
   field :sbb, as: :signed_by_borrower
   field :sbl, as: :signed_by_lender

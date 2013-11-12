@@ -22,7 +22,14 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new(user_id: current_user.id)
+    params[:note] ||= {}
+    params[:note][:user_id] = current_user.id
+    @note = Note.new(params[:note])
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @note }
+    end
   end
 
   # GET /notes/1/edit
