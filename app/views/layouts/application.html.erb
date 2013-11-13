@@ -6,6 +6,9 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Lending Round" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js" %>
+    <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.3.2/accounting.min.js" %>
+    <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
