@@ -12,31 +12,22 @@
     <%= image_tag "report.png" %>
   </div>
 </div>
-
 <hr>
-
 <div class="row">
-  <div class="span8 offset2">
+  <div class="span4 offset2">
     <p class="lead">Ready to help your friend out? Great! Decide the loan amount and for how long. It only takes a few seconds!</p>
-    <hr>
+  </div>
+  <div class="span5 offset1">
+    <%= simple_form_for :note, url: "/notes/new", method: :get, html: {class: "form-horizontal"} do |f| %>
+          <%= f.input :amount, label: "Loan Amount ($)", input_html: {class: "input-small", placeholder: "3000"} %>
+            <%= f.input :rate, label: "Interest Rate (%)", input_html: {class: "input-small", placeholder: "13.17" } %>
+            <%= f.input :term, label: "Term (months)", input_html: {class: "input-small", placeholder: "12"} %>
+            <%= f.input :start_date, label: "First Payment Date", input_html: {class: "input-small", placeholder: "Dec 1, 2013"} %>
   </div>
 </div>
 
-<%= simple_form_for :note, url: "/notes/new", method: :get, html: {class: "form-horizontal"} do |f| %>
   <div class="row">
-    <div class="span3 offset2">
-      <%= f.input :amount, label: "Loan Amount", input_html: {class: "input-small", placeholder: "$6,000"} %>
-        <%= f.input :rate, label: "Interest Rate", input_html: {class: "input-small", placeholder: "11.00%" } %>
-        <%= f.input :term, label: "Term (months)", input_html: {class: "input-small", placeholder: "36"} %>
-        <%= f.input :start_date, label: "First Payment Date", input_html: {class: "input-small", placeholder: "Oct 27, 2013"} %>
-    </div>
-    <div class="span1">
-      <br>
-      <br>
-      <br>
-      <span style="font-size: 60px; font-weight: bold;">&rarr;</span>
-    </div>
-    <div class="span4">
+    <div class="span4 offset4">
       <table class="table table-bordered loan-summary">
         <thead>
           <tr>
@@ -46,21 +37,21 @@
         <tbody>
           <tr>
             <td>
-              <strong>$196.43</strong><br>
+              <strong>$268.19</strong><br>
               Monthly payment
             </td>
             <td>
-              <strong>$7,071.56</strong><br>
-              Over 36 Payments
+              <strong>$3,218.29</strong><br>
+              Over 12 Payments
             </td>
           </tr>
           <tr>
             <td>
-              <strong>$1,071.56</strong><br>
+              <strong>$218.29</strong><br>
               Total Interest
             </td>
             <td>
-              <strong>Sep. 2016</strong><br>
+              <strong>Nov. 2014</strong><br>
               Pay-off date
             </td>
           </tr>
@@ -69,8 +60,9 @@
     </div>
   </div><!- .row !>
   <div class="row">
-    <div class="span6 offset3">
-      <%= f.button :submit,"Create a loan!", class: "btn-primary btn-block" %>
+    <div class="span7 offset3">
+      <%= f.button :submit,"Generate the loan!",
+        class: "btn-primary btn-block btn-large" %>
     </div>
   </div>
 <% end %>
