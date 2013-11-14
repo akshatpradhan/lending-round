@@ -1,31 +1,124 @@
 <div class="row">
-  <div class="span11 offset1"><h1>Review promissory note</h1></div>
+  <div class="span12">
+    <h1 class="text-center">
+      Promissory Note Review
+    </h1>
+  </div>
 </div>
-
+<br>
+<br>
 <div class="row">
-  <div class="span4 offset3">
-    <div class="well well-large">
-      <p>The loan amount is for <strong>$<%= @note.amount %></strong></p>
-      <p>The Interest Rate is for <strong><%= @note.rate %>%</strong></p>
-      <p>It lasts for <strong><%= @note.term %> months</strong></p>
-      <p>First Payment Date is <strong><%= l @note.start_date, format: :long %> </strong></p>
+  <div class="span4 offset2">
+    <h3>
+      Current terms:
+    </h3>
+    <ul>
+      <li>
+        The loan is for <strong>$<%= @note.amount %></strong>
+      </li>
+      <li>
+        The interest rate is <strong><%= @note.rate %>%</strong>
+      </li>
+      <li>
+        It will last <strong><%= @note.term %> months</strong>
+      </li>
+      <li>
+        First payment date is <strong><%= l @note.start_date, format: :long %> </strong>
+      </li>
+    </ul>
+  </div>
+  <div class="span3 offset2">
+    <h3>
+      Loan status:
+    </h3>
+    <div class="alert alert-info">
+      Pending signature
     </div>
   </div>
 </div>
-
+<br>
+<br>
+<div class="row">
+  <div class="span4 offset5">
+    <%= link_to "Edit Loan", edit_note_path(@note), class: "btn btn-danger" %>
+    <a href="#signature" class="btn btn-success">Sign Loan</a>
+  </div>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="span6 offset3">
+    <p>
+      <strong>For good and valuable consideration, </strong>the receipt and sufficiency of which is here acknowlwedged, <strong><%= @note.borrower_name %></strong> of <strong><%= @note.borrower_address %></strong> (hereinafter “Borrower”), hereby promises to pay to the order of <strong><%= @note.lender_name %></strong> of <strong><%= @note.lender_address %></strong> (hereinafter “Lender”), the sum, in United States dollars, of <strong>$<%= @note.amount %></strong> plus interest accruing at an annual rate of <strong><%= @note.rate %>%</strong> on the unpaid principal amount beginning on <strong><%= l @note.start_date, format: :long %> </strong> (the “Debt”). Borrower understands that the Lender may transfer this Note. The Lender or anyone who takes this Note by Transfer and who is entitled to receive payments under this Note is called the “Note Holder”.
+    </p>
+    <p>
+      <strong>Payments table</strong> - Payment of the Debt shall be made in monthly installments as follows:
+      <%= image_tag "report.png" %>
+    </p>
+    <p>
+      This Note may be prepaid in full at any time without cost or penalty to Borrower. If the Borrower fails to make any payment in the full amount and within <strong>15</strong> calendar days after the date is due, Borrower agrees to pay a late charge to <strong>Lending round</strong> in the amount of <strong>$5.25</strong>. Borrower will pay this late charge promptly but only once on each late payment.
+    </p>
+    <p>
+      <strong>Acceleration</strong> - If any of the following events of default occur, this Note and any other obligations of the Borrower to the Lender or Note Holder shall, at the option of the Lender or Note Holder, become due immediately, without demand or notice:
+    </p>
+    <ol>
+      <li>
+        the failure of the Borrower to pay any Monthly Payment in full within <strong>15</strong> calender days from the date it is due
+      </li>
+      <li>
+        the filing of bankruptcy proceedings involving the Borrower as a debtor
+      </li>
+      <li>
+        the application for the appointment of a receiver for the Borrower
+      </li>
+      <li>
+        the making of a general assignment for the benefit of the Borrower’s creditors
+      </li>
+      <li>
+        the insolvency of the Borrower
+      </li>
+      <li>
+        a misrepresentation by the Borrower to the Lender or Note holder for the purpose of obtaining or extending credit
+      </li>
+      <li>
+        failure of the Borrower to fulfill any obligations required under this Note
+      </li>
+    </ol>
+    <p>
+      If Borrower fails to cure said default within <strong>30</strong> calendar days of receipt of notice regarding said default, Lender or Note Helder may, at its sole discretion, exercise any rights and remedies available to Lender or Note Holder under all applicable state and federal laws. If any Monthly Payment under this Note is not paid when due, the Borrower promises to pay all costs of collection, including reasonable attorney fees if allowed under state law, whether or not a lawsuit is commenced as part of the collection process. No renewal or extension of this Note, delay in enforcing any right of the Lender or Note Holder under this Note, or assignment by Lender or Note Holder of this Note shall affect the liability or the obligations of the Borrower. All rights of the Lender or Note Holder under this Note are cumulative and may be exercised concurrently or consecutively at the Lender’s or Note Holder’s option. A decision by Lender or Note Holder not to exercise any remedy under the terms of this Note does not waive Lender’s or Note Holder’s right to exercise that remedy at a later date.
+    </p>
+    <p>
+      <strong>Liability of Individual Borrowers</strong> - Each person signing this Note as a Borrower hereby acknowledges and agrees that they are each fully and personally obligated to keep all promises made in this Note, including the promise to pay all amounts due under this Note. The Lender or Note holder may enforce its rights under the terms of this Note against each Borrower individually or against all Borrowers collectively.
+    </p>
+    <p>
+      <strong>Waiver</strong> - The undersigned and all other parties to this Note waive demand, presentment and protest and all notices thereto and further agree to remain bound, notwithstanding any extension, waiver, or other indulgence by any holder or upon the discharge or release of any obligor hereunder or to this Note. All parties agree and acknowledge the terms “Borrower”, “”Lender and “Note Holder” as used herein are valid and constitute identical meaning whether employed in singular or plural form, and may represent natural or legal personalities, as applies.
+    </p>
+    <p>
+      If any one or more of the provisions of this Note are determined to be unenforceable, in whole or in part, for any reason, the remaining provisions shall remain in full force and effect.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <h2 class="text-center">
+      <a class="muted" name="signature">
+        Signature
+      </a>
+    </h2>
+  </div>
+</div>
 <div class="row">
   <% %w(borrower lender).each do |borrower_or_lender| %>
-    <div class="span5 offset1">
+    <div class="span4 offset2">
       <h3><%= borrower_or_lender.titleize %></h3>
     </div>
   <% end -%>
 </div>
-
 <div class="row">
   <% %w(borrower lender).each do |borrower_or_lender| %>
-    <div class="span6">
+    <div class="span4 offset1">
       <% if @note.send(:"signed_by_#{borrower_or_lender}").present? %>
-        <p><%= @note.send(:"signed_by_#{borrower_or_lender}")%> has signed the promissory note.</p>
+        <p><strong><%= @note.send(:"signed_by_#{borrower_or_lender}")%></strong> has signed the promissory note</p>
       <% else %>
         <%= simple_form_for @note, html: {class: "form-horizontal"} do |f| %>
           <%= f.input :"signed_by_#{borrower_or_lender}", label: "Signature", placeholder: @note.send("#{borrower_or_lender}_name") %>
