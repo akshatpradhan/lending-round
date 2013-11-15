@@ -48,7 +48,7 @@ feature "User wanting to lend money" do
       fill_in "note_#{type}_address",    with: address
     end
 
-    click_button "Checkout with Dwolla!"
+    click_button "Create the Promissory Note!"
     page.current_path.should match /\/notes\//
     user.notes.count.should == 1
     page.should have_content /review promissory note/i
