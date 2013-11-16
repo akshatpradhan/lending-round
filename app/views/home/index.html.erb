@@ -108,115 +108,6 @@
   </div>
 </div>
 
-<script>
-  var templates = {};
-
-  $(function () {
-    /* hbs helper for accouning.js */
-    Handlebars.registerHelper('formatUSD', function (data) {
-      return accounting.formatMoney(data);
-    });
-
-    /* here we compile the templates for a speedy rendering */
-    $('script[type="text/x-handlebars-template"]').each(function () {
-      templates[$(this).data('template')] = Handlebars.compile($(this).html());
-    });
-
-    $('#note_amount, #note_rate, #note_term, #note_start_date').keyup(function () {
-      loanSummary();
-    });
-
-    $('#note_amount, #note_rate, #note_term, #note_start_date').change(function () {
-      loanSummary();
-    });
-  });
-
-  function loanSummary() {
-    var
-      amount = parseFloat($('#note_amount').val(), 10).toFixed(2),
-      interest = parseFloat($('#note_rate').val(), 10).toFixed(3) / 100,
-      duration = parseInt($('#note_term').val(), 10),
-      dateStart = moment($('#note_start_date').val(), 'YYYY-MM-DD');
-
-    if ((amount > 0) && (interest > 0) && (duration > 0) && (dateStart.isValid() === true)) {
-      var installment = parseFloat(amount * (((interest / 12) * Math.pow(1 + (interest / 12), duration)) / (Math.pow(1 + (interest / 12), duration) - 1))).toFixed(2);
-
-      $('#loan-summary').html(templates['loan-summary']({
-        duration: duration,
-        installment: installment,
-        totalInterest: (installment * duration) - amount,
-        totalPayments: installment * duration,
-        datePayoff: dateStart.clone().add('months', duration).format('MMM. YYYY'),
-      }));
-
-      loanAmortization(amount, installment, interest, duration, dateStart);
-
-    }
-  }
-
-  function loanAmortization(amount, installment, interest, duration, dateStart) {
-    var m = [];
-    var y = {};
-
-    var totals = {
-      principal: parseFloat(amount, 10),
-      interest: 0.00,
-      payment: 0.00,
-    };
-
-    for (var i = duration; i > 0; i--) {
-      var monthly_interest	= parseFloat(amount * (interest / 12), 10);
-      var monthly_principal	= parseFloat(installment - monthly_interest, 10);
-
-      m.push({
-        date: dateStart.format('MMM. YYYY'),
-        principal: monthly_principal,
-        interest: monthly_interest,
-        payment: installment,
-        balance: (i === 1) ? 0.00 : parseFloat(parseFloat(amount, 10) + parseFloat(monthly_interest, 10) - parseFloat(installment, 10), 10),
-      });
-
-      var year = dateStart.format('YYYY');
-
-      if (y.hasOwnProperty(year) !== true) {
-        y[year] = {
-          date: year,
-          principal: 0.00,
-          interest: 0.00,
-          payment: 0.00,
-          balance: 0.00,
-        };
-      }
-
-      y[year].principal 	+= parseFloat(monthly_principal, 10);
-      y[year].interest 	+= parseFloat(monthly_interest, 10);
-      y[year].payment 	+= parseFloat(installment, 10);
-
-      totals.interest		+= parseFloat(monthly_interest, 10);
-      totals.payment		+= parseFloat(installment, 10);
-
-      amount = parseFloat(amount - monthly_principal, 10);
-      dateStart = dateStart.add('months', 1);
-    }
-
-    $.each(y, function (key, value) {
-      y[key].balance = totals.principal;
-
-      if (y.hasOwnProperty(parseInt(key, 10) - 1) === true) {
-        y[key].balance = y[parseInt(key, 10) - 1].balance;
-      }
-
-      y[key].balance += parseFloat(value.interest, 10) - parseFloat(value.payment, 10);
-
-      if (y.hasOwnProperty(parseInt(key, 10) + 1) !== true) {
-        y[key].balance = 0.00;
-      }
-    });
-
-    $('#amortization-yearly').html(templates['loan-amortization-yearly']({payments: y, totals: totals}));
-    $('#amortization-monthly').html(templates['loan-amortization-monthly']({payments: m, totals: totals}));
-  }
-</script>
 <script type="text/x-handlebars-template" data-template="loan-summary">
   <table class="table table-bordered loan-summary">
     <thead>
@@ -244,6 +135,7 @@
     </tbody>
   </table>
 </script>
+
 <script type="text/x-handlebars-template" data-template="loan-amortization-yearly">
   <table class="table table-striped table-hover">
     <thead>
@@ -279,6 +171,7 @@
     </tfoot>
   </table>
 </script>
+
 <script type="text/x-handlebars-template" data-template="loan-amortization-monthly">
   <table class="table table-striped table-hover">
     <thead>
@@ -315,23 +208,23 @@
   </table>
 </script>
 
-  <%#<table>%>
-    <%#<tbody>%>
-      <%#<tr>%>
-        <%#<td colspan="4">%>
-          <%#<ul class="nav nav-tabs" id="myTab">%>
-            <%#<li>%>
-              <%#<a data-toggle="tab" href="#amortization-yearly">Yearly Amortization</a>%>
-            <%#</li>%>
-            <%#<li class="active">%>
-              <%#<a data-toggle="tab" href="#amortization-monthly">Monthly Amortization</a>%>
-            <%#</li>%>
-          <%#</ul>%>
-          <%#<div class="tab-content">%>
-            <%#<div class="tab-pane" id="amortization-yearly"></div>%>
-            <%#<div class="tab-pane active" id="amortization-monthly"></div>%>
-          <%#</div>%>
-        <%#</td>%>
-      <%#</tr>%>
-    <%#</tbody>%>
-  <%#</table>%>
+<%#<table>%>
+  <%#<tbody>%>
+    <%#<tr>%>
+      <%#<td colspan="4">%>
+        <%#<ul class="nav nav-tabs" id="myTab">%>
+          <%#<li>%>
+            <%#<a data-toggle="tab" href="#amortization-yearly">Yearly Amortization</a>%>
+          <%#</li>%>
+          <%#<li class="active">%>
+            <%#<a data-toggle="tab" href="#amortization-monthly">Monthly Amortization</a>%>
+          <%#</li>%>
+        <%#</ul>%>
+        <%#<div class="tab-content">%>
+          <%#<div class="tab-pane" id="amortization-yearly"></div>%>
+          <%#<div class="tab-pane active" id="amortization-monthly"></div>%>
+        <%#</div>%>
+      <%#</td>%>
+    <%#</tr>%>
+  <%#</tbody>%>
+<%#</table>%>
