@@ -12,22 +12,31 @@
     <%= image_tag "report.png" %>
   </div>
 </div>
+
 <hr>
+
 <div class="row">
-  <div class="span4 offset2">
+  <div class="span8 offset2">
     <p class="lead">Ready to help your friend out? Great! Decide the loan amount and for how long. It only takes a few seconds!</p>
-  </div>
-  <div class="span5 offset1">
-    <%= simple_form_for :note, url: "/notes/new", method: :get, html: {class: "form-horizontal"} do |f| %>
-          <%= f.input :amount, label: "Loan Amount ($)", input_html: {class: "input-small", placeholder: "3000"} %>
-            <%= f.input :rate, label: "Interest Rate (%)", input_html: {class: "input-small", placeholder: "13.17" } %>
-            <%= f.input :term, label: "Term (months)", input_html: {class: "input-small", placeholder: "12"} %>
-            <%= f.input :start_date, label: "First Payment Date", input_html: {class: "input-small", placeholder: "Dec 1, 2013"} %>
+    <hr>
   </div>
 </div>
 
+<%= simple_form_for :note, url: new_note_path, method: :get, html: {class: "form-horizontal"} do |f| %>
   <div class="row">
-    <div class="span4 offset4">
+    <div class="span4 offset2">
+      <%= f.input :amount, label: "Loan Amount", input_html: {class: "input-medium", placeholder: "$6,000"} %>
+      <%= f.input :rate, label: "Interest Rate", input_html: {class: "input-medium", placeholder: "11.00%" } %>
+      <%= f.input :term, label: "Term (months)", input_html: {class: "input-medium", placeholder: "36"} %>
+      <%= f.input :start_date, label: "First Payment Date", input_html: {type: "date", class: "input-medium", placeholder: "Oct 27, 2013"} %>
+    </div>
+    <div class="span1">
+      <br>
+      <br>
+      <br>
+      <span style="font-size: 60px; font-weight: bold;">&rarr;</span>
+    </div>
+    <div class="span4" id="loan-summary">
       <table class="table table-bordered loan-summary">
         <thead>
           <tr>
@@ -37,32 +46,27 @@
         <tbody>
           <tr>
             <td>
-              <strong>$268.19</strong><br>
-              Monthly payment
+              <strong></strong><br>Monthly payment
             </td>
             <td>
-              <strong>$3,218.29</strong><br>
-              Over 12 Payments
+              <strong></strong><br>Over N Payments
             </td>
           </tr>
           <tr>
             <td>
-              <strong>$218.29</strong><br>
-              Total Interest
+              <strong></strong><br>Total Interest
             </td>
             <td>
-              <strong>Nov. 2014</strong><br>
-              Pay-off date
+              <strong></strong><br>Pay-off date
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div><!- .row !>
+  </div>
   <div class="row">
-    <div class="span7 offset3">
-      <%= f.button :submit,"Generate the loan!",
-        class: "btn-primary btn-block btn-large" %>
+    <div class="span6 offset3">
+      <%= f.button :submit,"Create a loan!", class: "btn-primary btn-block" %>
     </div>
   </div>
 <% end %>
@@ -103,3 +107,124 @@
     </div>
   </div>
 </div>
+
+<script type="text/x-handlebars-template" data-template="loan-summary">
+  <table class="table table-bordered loan-summary">
+    <thead>
+      <tr>
+        <th colspan="2">Loan Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <strong>{{formatUSD installment}}</strong><br>Monthly payment
+        </td>
+        <td>
+          <strong>{{formatUSD totalPayments}}</strong><br>Over {{duration}} Payments
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>{{formatUSD totalInterest}}</strong><br>Total Interest
+        </td>
+        <td>
+          <strong>{{datePayoff}}</strong><br>Pay-off date
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</script>
+
+<script type="text/x-handlebars-template" data-template="loan-amortization-yearly">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th style="text-align: right; width: 20%;">Year</th>
+        <th style="text-align: right; width: 20%;">Principal</th>
+        <th style="text-align: right; width: 20%;">Interest</th>
+        <th style="text-align: right; width: 20%;">Payment</th>
+        <th style="text-align: right; width: 20%;">Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each payments}}
+        <tr>
+          <th style="text-align: right;">{{date}}</th>
+          <td style="text-align: right;">{{formatUSD principal}}</td>
+          <td style="text-align: right;">{{formatUSD interest}}</td>
+          <td style="text-align: right;">{{formatUSD payment}}</td>
+          <td style="text-align: right;">{{formatUSD balance}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      {{#with totals}}
+        <tr>
+          <th style="text-align: right;">Totals</th>
+          <td style="text-align: right;">{{formatUSD principal}}</td>
+          <td style="text-align: right;">{{formatUSD interest}}</td>
+          <td style="text-align: right;">{{formatUSD payment}}</td>
+          <td style="text-align: right;"></td>
+        </tr>
+      {{/with}}
+    </tfoot>
+  </table>
+</script>
+
+<script type="text/x-handlebars-template" data-template="loan-amortization-monthly">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th style="text-align: right; width: 20%;">Month</th>
+        <th style="text-align: right; width: 20%;">Principal</th>
+        <th style="text-align: right; width: 20%;">Interest</th>
+        <th style="text-align: right; width: 20%;">Payment</th>
+        <th style="text-align: right; width: 20%;">Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each payments}}
+        <tr>
+          <th style="text-align: right;">{{date}}</th>
+          <td style="text-align: right;">{{formatUSD principal}}</td>
+          <td style="text-align: right;">{{formatUSD interest}}</td>
+          <td style="text-align: right;">{{formatUSD payment}}</td>
+          <td style="text-align: right;">{{formatUSD balance}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      {{#with totals}}
+        <tr>
+          <th style="text-align: right;">Totals</th>
+          <td style="text-align: right;">{{formatUSD principal}}</td>
+          <td style="text-align: right;">{{formatUSD interest}}</td>
+          <td style="text-align: right;">{{formatUSD payment}}</td>
+          <td style="text-align: right;"></td>
+        </tr>
+      {{/with}}
+    </tfoot>
+  </table>
+</script>
+
+<%#<table>%>
+  <%#<tbody>%>
+    <%#<tr>%>
+      <%#<td colspan="4">%>
+        <%#<ul class="nav nav-tabs" id="myTab">%>
+          <%#<li>%>
+            <%#<a data-toggle="tab" href="#amortization-yearly">Yearly Amortization</a>%>
+          <%#</li>%>
+          <%#<li class="active">%>
+            <%#<a data-toggle="tab" href="#amortization-monthly">Monthly Amortization</a>%>
+          <%#</li>%>
+        <%#</ul>%>
+        <%#<div class="tab-content">%>
+          <%#<div class="tab-pane" id="amortization-yearly"></div>%>
+          <%#<div class="tab-pane active" id="amortization-monthly"></div>%>
+        <%#</div>%>
+      <%#</td>%>
+    <%#</tr>%>
+  <%#</tbody>%>
+<%#</table>%>
