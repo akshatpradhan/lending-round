@@ -12,10 +12,10 @@ en:
       default_message: "Please review the problems below:"
     labels:
       note:
-        amount: Loan Amount
-        rate: Interest Rate (%)
-        term: Term (months)
-        start_date: First Payment Date
+        amount: Loan amount
+        rate: Interest rate
+        term: Loan term
+        start_date: First payment date
     # Labels and hints examples
     # labels:
     #   defaults:
