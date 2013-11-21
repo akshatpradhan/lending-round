@@ -38,7 +38,7 @@ feature "Lender creates a loan" do
 
     fill_in "note_lender_email",   with: user.email
     fill_in "note_borrower_email", with: borrower_email
-    click_button "Checkout with Dwolla!"
+    click_button "Show me the Promissory Note!"
     visit signout_path
   end
 

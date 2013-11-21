@@ -27,7 +27,7 @@ feature "User wanting to lend money" do
 
   scenario "creates a promissory note on lending round" do
     visit signin_path
-    click_on "Generate a loan!"
+    click_on "Generate the loan!"
     page.current_path.should == new_note_path
     fill_in "note_amount",     with: 6000
     fill_in "note_rate",       with: 11.0
@@ -48,7 +48,7 @@ feature "User wanting to lend money" do
       fill_in "note_#{type}_address",    with: address
     end
 
-    click_button "Create the Promissory Note!"
+    click_button "Show me the Promissory Note!"
     page.current_path.should match /\/notes\//
     user.notes.count.should == 1
     page.should have_content /review promissory note/i
